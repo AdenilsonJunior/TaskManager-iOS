@@ -7,24 +7,55 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseDatabase
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var textFieldName: UITextField!
+    @IBOutlet weak var textFieldEmail: UITextField!
+    @IBOutlet weak var textFieldPassword: UITextField!
+    @IBOutlet weak var textFieldConfirmPassword: UITextField!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
     }
     
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    @IBAction func doSignup(_ sender: UIButton) {
+        let name = textFieldName.text!
+        let email = textFieldEmail.text!
+        let password = textFieldPassword.text!
+        let confirmPassword = textFieldConfirmPassword.text!
+        
+        Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
+            guard let user = authResult?.user, error == nil else {
+                self.showAlert(title: "Erro", message: "Ocorreu um erro ao tentar criar um usuário")
+                return
+            }
+            self.createUserInDatabase(uid: user.uid, name: name, email: email)
+        }
     }
-    */
-
+    
+    func showAlert(title: String, message: String) {
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title:"Ok", style: .default))
+        self.present(alert, animated: true)
+    }
+    
+    func createUserInDatabase(uid: String, name: String, email: String) {
+        Database.database().reference().child("users").childByAutoId().setValue(["uid": uid, "name": name, "email": email]) { error, reference in
+            if(error == nil) {
+                self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+            } else {
+                self.showAlert(title: "Error", message: "Ocorreu um erro ao tentar salvar informações do usuário")
+            }
+        }
+    }
+    
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        view.endEditing(true)
+    }
+    
 }
