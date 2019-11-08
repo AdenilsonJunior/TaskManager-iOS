@@ -21,7 +21,7 @@ class TaskListTableViewController: UITableViewController {
             self.navigationController?.popViewController(animated: true)
             return
         }
-        Database.database().reference().child("tasks").child("\(user.uid)").observe(DataEventType.value) { (snapshot) in
+        Database.database().reference().child("tasks").child("\(user.uid)").queryOrdered(byChild: "level").observe(DataEventType.value) { (snapshot) in
             self.taskList.removeAll()
             for child in snapshot.children.allObjects{
                 guard let dictionaryTask = (child as? DataSnapshot)?.value as? Dictionary<String, Any> else {
@@ -31,6 +31,7 @@ class TaskListTableViewController: UITableViewController {
                 let task = Task.mapDictionaryToTask(dictionaryTask)
                 self.taskList.append(task)
             }
+            self.taskList.reverse()
             self.tableView.reloadData()
         }
         
@@ -56,6 +57,15 @@ class TaskListTableViewController: UITableViewController {
                 tableView.reloadRows(at: [indexPath], with: .fade)
             }
             tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
+    @IBAction func logout(_ sender: UIBarButtonItem) {
+        do {
+            try Auth.auth().signOut()
+            self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+            
+        } catch {
+            navigationController?.popViewController(animated: true)
         }
     }
 }

@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import FirebaseAuth
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        
+        let user = Auth.auth().currentUser
+        
+        let storyboard = UIStoryboard.init(name: "Main", bundle: nil)
+        
+        var viewController: UIViewController
+        
+        if(user == nil) {
+            viewController = storyboard.instantiateViewController(withIdentifier: "LoginViewController")
+        } else {
+            viewController = storyboard.instantiateViewController(withIdentifier: "TaskListTableViewController")
+        }
+        
+        self.window?.rootViewController = viewController
+        self.window?.makeKeyAndVisible()
         return true
     }
 

@@ -207,12 +207,20 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Lista de Tarefas" id="eJb-m5-rrE">
+                        <barButtonItem key="leftBarButtonItem" title="Logout" id="QMX-SW-usJ">
+                            <connections>
+                                <action selector="logout:" destination="IMN-rF-hF7" id="l2Z-dw-jlV"/>
+                            </connections>
+                        </barButtonItem>
                         <barButtonItem key="rightBarButtonItem" title="Adicionar" id="60l-OO-GqY">
                             <connections>
                                 <segue destination="YmT-US-Ub6" kind="show" id="0jB-ZX-8Jb"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="YkA-hD-M4t" kind="showDetail" identifier="LoginSegue" id="lva-YT-Awm"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="oV9-G8-6hp" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -560,7 +568,7 @@
         <!--Navigation Controller-->
         <scene sceneID="0wX-uR-tVy">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YkA-hD-M4t" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="LoginViewController" automaticallyAdjustsScrollViewInsets="NO" id="YkA-hD-M4t" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="2Le-PW-0Ob">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
@@ -578,7 +586,7 @@
         <!--Navigation Controller-->
         <scene sceneID="07e-Lu-rsP">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="GDT-Dd-l8N" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="TaskListTableViewController" automaticallyAdjustsScrollViewInsets="NO" id="GDT-Dd-l8N" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ElM-0L-yjv">
                         <rect key="frame" x="0.0" y="20" width="414" height="44"/>
