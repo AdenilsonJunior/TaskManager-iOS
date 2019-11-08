@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class ViewController: UIViewController {
 
@@ -23,7 +24,19 @@ class ViewController: UIViewController {
     }
 
     @IBAction func doLogin(_ sender: UIButton) {
-        self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+        Auth.auth().signIn(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { result, error in
+            if(error == nil && result?.user != nil) {
+                self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+            } else {
+                self.showInvalidLogin()
+            }
+        }
+    }
+    
+    func showInvalidLogin() {
+        let alertViewController = UIAlertController(title: "Error!", message: "Email ou senha inválido.", preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        present(alertViewController, animated: true, completion: nil)
     }
 }
 

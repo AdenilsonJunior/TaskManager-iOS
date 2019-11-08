@@ -22,6 +22,10 @@ class AddTaskViewController: UIViewController {
     
     @IBAction func createTask(_ sender: UIButton) {
         let name = textFieldName.text!
+        if(name.isEmpty || name.isBlank) {
+            showInvalidNameAlert()
+            return
+        }
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "dd/MM/yyyy"
         let date = dateFormatter.string(from: datePicker.date)
@@ -42,6 +46,12 @@ class AddTaskViewController: UIViewController {
     
     }
     
+    func showInvalidNameAlert() {
+        let alertViewController = UIAlertController(title: "Falha!", message: "Sua tarefa precisa ter um nome", preferredStyle: .alert)
+        alertViewController.addAction(UIAlertAction(title: "Ok", style: .default))
+        present(alertViewController, animated: true, completion: nil)
+    }
+    
     func showSuccessAlert() {
         let alertViewController = UIAlertController(title: "Sucesso!", message: "Sua tarefa foi adicionada com sucesso", preferredStyle: .alert)
         alertViewController.addAction(UIAlertAction(title: "Ok", style: .default) { action in
@@ -56,5 +66,11 @@ class AddTaskViewController: UIViewController {
             self.navigationController?.popViewController(animated: true)
         })
         present(alertViewController, animated: true, completion: nil)
+    }
+}
+
+extension String {
+    var isBlank: Bool {
+        return allSatisfy({ $0.isWhitespace })
     }
 }
