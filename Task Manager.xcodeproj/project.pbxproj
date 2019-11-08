@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		1336F6E1EDBD4B055FC11B6C /* Pods_Task_Manager.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6D23F1620BC15DE3CCA71D63 /* Pods_Task_Manager.framework */; };
+		9927D1392375131D007D71BB /* AddTaskViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9927D1382375131C007D71BB /* AddTaskViewController.swift */; };
 		997882702373905B007C2E29 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9978826F2373905B007C2E29 /* GoogleService-Info.plist */; };
 		997882722373A305007C2E29 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997882712373A305007C2E29 /* Task.swift */; };
 		997882742373A427007C2E29 /* TaskListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 997882732373A427007C2E29 /* TaskListTableViewController.swift */; };
@@ -26,6 +27,7 @@
 /* Begin PBXFileReference section */
 		35F15E649D1810FB3B47D6E6 /* Pods-Task Manager.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Task Manager.debug.xcconfig"; path = "Target Support Files/Pods-Task Manager/Pods-Task Manager.debug.xcconfig"; sourceTree = "<group>"; };
 		6D23F1620BC15DE3CCA71D63 /* Pods_Task_Manager.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Task_Manager.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		9927D1382375131C007D71BB /* AddTaskViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTaskViewController.swift; sourceTree = "<group>"; };
 		9978826F2373905B007C2E29 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		997882712373A305007C2E29 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
 		997882732373A427007C2E29 /* TaskListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskListTableViewController.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				99DEE33B232C51FB0077DDBD /* AppDelegate.swift */,
 				99DEE33D232C51FB0077DDBD /* LoginViewController.swift */,
 				99DEE33F232C51FB0077DDBD /* Main.storyboard */,
+				9927D1382375131C007D71BB /* AddTaskViewController.swift */,
 				997882792373C5CB007C2E29 /* TaskTableViewCell.swift */,
 				997882732373A427007C2E29 /* TaskListTableViewController.swift */,
 				997882712373A305007C2E29 /* Task.swift */,
@@ -237,6 +240,7 @@
 				99DEE33E232C51FB0077DDBD /* LoginViewController.swift in Sources */,
 				99DEE33C232C51FB0077DDBD /* AppDelegate.swift in Sources */,
 				997882742373A427007C2E29 /* TaskListTableViewController.swift in Sources */,
+				9927D1392375131D007D71BB /* AddTaskViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

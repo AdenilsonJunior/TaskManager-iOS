@@ -46,4 +46,16 @@ class TaskListTableViewController: UITableViewController {
         cell.bind(task: taskList[indexPath.row])
         return cell
     }
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let taskSelected = self.taskList[indexPath.row]
+        taskSelected.done = !taskSelected.done
+        let user = Auth.auth().currentUser?.uid ?? ""
+        Database.database().reference().child("tasks").child(user).child(taskSelected.uid).setValue(Task.mapTaskToDictonary(taskSelected)) { error, reference in
+            if(error == nil) {
+                tableView.reloadRows(at: [indexPath], with: .fade)
+            }
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
+    }
 }

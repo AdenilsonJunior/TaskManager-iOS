@@ -13,7 +13,7 @@ class Task {
     let name: String
     let date: String
     let level: Int
-    let done: Bool
+    var done: Bool
     
     init(uid: String, name: String, date: String, level: Int, done: Bool) {
         self.uid = uid
@@ -31,5 +31,15 @@ class Task {
             level: dictionary["level"] as! Int,
             done: dictionary["done"] as! Bool
         )
+    }
+    
+    static func mapTaskToDictonary(_ task: Task) -> Dictionary<String, Any> {
+        return [
+            "uid": task.uid,
+            "name": task.name,
+            "date": task.date,
+            "level": task.level,
+            "done": task.done
+        ]
     }
 }
