@@ -65,14 +65,28 @@ class SignUpViewController: UIViewController {
         self.present(alert, animated: true)
     }
     
+    func showSuccessAlert() {
+        let successAlert = UIAlertController(title: "Sucesso!", message: "Sua conta foi criada com sucesso!", preferredStyle: .alert)
+        successAlert.addAction(UIAlertAction(title: "Ok", style: .default, handler: { action in
+            self.navigateToTasks()
+        }))
+        self.present(successAlert, animated: true, completion: nil)
+    }
+    
     func createUserInDatabase(uid: String, name: String, email: String) {
         Database.database().reference().child("users").childByAutoId().setValue(["uid": uid, "name": name, "email": email]) { error, reference in
             if(error == nil) {
-                self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+                self.showSuccessAlert()
             } else {
                 self.showAlert(title: "Error", message: "Ocorreu um erro ao tentar salvar informações do usuário")
             }
         }
+    }
+    
+    func navigateToTasks() {
+        let story = UIStoryboard(name: "Main", bundle: nil)
+        let viewcontroller = story.instantiateViewController(withIdentifier: "TaskListTableViewController")
+        self.view.window?.rootViewController = viewcontroller
     }
     
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
