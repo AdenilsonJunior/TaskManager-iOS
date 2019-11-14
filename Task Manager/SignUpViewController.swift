@@ -29,6 +29,27 @@ class SignUpViewController: UIViewController {
         let password = textFieldPassword.text!
         let confirmPassword = textFieldConfirmPassword.text!
         
+        if(name.isBlank) {
+            showAlert(title: "Falha!", message: "Nome inválido")
+            return
+        }
+        if(email.isBlank) {
+            showAlert(title: "Falha!", message: "Email inválido")
+            return
+        }
+        if(password.isBlank) {
+            showAlert(title: "Falha!", message: "Senha inválida")
+            return
+        }
+        if(confirmPassword.isBlank) {
+            showAlert(title: "Falha!", message: "Confirmação de senha inválida")
+            return
+        }
+        if(password != confirmPassword) {
+            showAlert(title: "Falha!", message: "As senhas não coincidem")
+            return
+        }
+        
         Auth.auth().createUser(withEmail: email, password: password) { authResult, error in
             guard let user = authResult?.user, error == nil else {
                 self.showAlert(title: "Erro", message: "Ocorreu um erro ao tentar criar um usuário")
