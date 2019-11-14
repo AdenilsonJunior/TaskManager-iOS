@@ -62,10 +62,12 @@ class TaskListTableViewController: UITableViewController {
     @IBAction func logout(_ sender: UIBarButtonItem) {
         do {
             try Auth.auth().signOut()
-            self.performSegue(withIdentifier: "LoginSegue", sender: nil)
+            let story = UIStoryboard(name: "Main", bundle: nil)
+            let viewcontroller = story.instantiateViewController(withIdentifier: "LoginViewController")
+            self.view.window?.rootViewController = viewcontroller
             
         } catch {
-            navigationController?.popViewController(animated: true)
+            self.navigationController?.popViewController(animated: true)
         }
     }
 }

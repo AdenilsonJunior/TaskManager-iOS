@@ -26,7 +26,10 @@ class ViewController: UIViewController {
     @IBAction func doLogin(_ sender: UIButton) {
         Auth.auth().signIn(withEmail: textFieldEmail.text!, password: textFieldPassword.text!) { result, error in
             if(error == nil && result?.user != nil) {
-                self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+                // self.performSegue(withIdentifier: "TaskListSegue", sender: nil)
+                let story = UIStoryboard(name: "Main", bundle: nil)
+                let viewcontroller = story.instantiateViewController(withIdentifier: "TaskListTableViewController")
+                self.view.window?.rootViewController = viewcontroller
             } else {
                 self.showInvalidLogin()
             }
